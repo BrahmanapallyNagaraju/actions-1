@@ -1,0 +1,27 @@
+name: Generate ASCII Artwork
+
+on: push # trigger event
+
+jobs:
+    ascii_job: # job id to be referenced later in the workflow, can contain only letters and - and _
+        name: ASCII art work job # The name of the job (label) which will be displayed in actions UI, can contain even symbols spaces
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Repo # latest is v6 at the time of writing this file
+            uses: actions/checkout@v6 #https://github.com/marketplace/actions/checkout
+          
+          - name: Install cowsay program
+            run: sudo apt install cowsay -y # installing cowsay library
+
+          # execute 3rd party library, here 'cowsay' is a 3rd party library used generate ASCII art work
+          - name: Execute cowsay CMD
+            run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt # this fails if cowsay library not installed
+        
+          - name: Test File Exists
+            run: grep -i "dragon" dragon.txt
+          
+          - name: Read File
+            run: cat dragon.txt
+
+          - name: List repo files
+            run: ls -lrtaR

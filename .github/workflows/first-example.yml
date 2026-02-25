@@ -27,4 +27,4 @@ jobs:
 
           # execute 3rd party library, here 'cowsay' is a 3rd party library used generate ASCII art work
           - name: Generate ASCII Artwork
-            run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
+            run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt # this fails if cowsay library not installed
