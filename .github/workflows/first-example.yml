@@ -3,7 +3,8 @@ name: My First Workflow
 on: push # trigger event
 
 jobs:
-    first_job:
+    first_job: # job id to be referenced later in the workflow, can contain only letters and - and _
+        name: First Ever Job :) # The name of the job (label) which will be displayed in actions UI, can contain even symbols spaces
         runs-on: ubuntu-latest
         steps:
         - name: Checkout Repo # latest is v6 at the time of writing this file
