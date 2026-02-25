@@ -13,7 +13,7 @@ jobs:
           run: echo "My first GitHub Actions job"
 
         - name: List files
-          run: ls -Rl # list files recursivley along with the directory
+          run: ls -Rla # list all (including .github)files recursivley along with the directory
         
         - name: Read file
           run: cat README.md
