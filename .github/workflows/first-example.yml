@@ -7,13 +7,24 @@ jobs:
         name: First Ever Job :) # The name of the job (label) which will be displayed in actions UI, can contain even symbols spaces
         runs-on: ubuntu-latest
         steps:
-        - name: Checkout Repo # latest is v6 at the time of writing this file
-          uses: actions/checkout@v6 #https://github.com/marketplace/actions/checkout
-        - name: Welcome message
-          run: echo "My first GitHub Actions job"
+          - name: Checkout Repo # latest is v6 at the time of writing this file
+            uses: actions/checkout@v6 #https://github.com/marketplace/actions/checkout
+          - name: Welcome message
+            run: echo "My first GitHub Actions job"
 
-        - name: List files
-          run: ls -Rla # list all (including .github)files recursivley along with the directory
-        
-        - name: Read file
-          run: cat README.md
+          - name: List files
+            run: ls -Rla # list all (including .github)files recursivley along with the directory
+          
+          - name: Read file
+            run: cat README.md
+          
+          # multi line commands in one step use | pipe to execute commands serially (one after the other)
+          - name: Multi line command list and read file
+            run: |
+              echo "My First GitHub Actions Job"
+              ls -ltrRa # -R for recusrive ls, -rt for reverse sort based on time modified
+              cat README.md
+
+          # execute 3rd party library, here 'cowsay' is a 3rd party library used generate ASCII art work
+          - name: Generate ASCII Artwork
+            run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR" >> dragon.txt
