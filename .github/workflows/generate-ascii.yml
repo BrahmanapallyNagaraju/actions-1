@@ -25,3 +25,11 @@ jobs:
 
           - name: List repo files
             run: ls -lrtaR
+
+          # executing shell script
+          - name: execute cowsay shell script
+            run: |
+              chmod +x ascii-art-work.sh
+              ./ascii-art-work.sh
+          - name: list files
+            run: ls -lrtha
