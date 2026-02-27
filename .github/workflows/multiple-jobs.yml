@@ -1,0 +1,48 @@
+name: Using multiple jobs in a workflow
+
+on:
+    push
+
+jobs:
+    build_job_1: # job id
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install Cowsay program
+              run: sudo apt-get install cowsay -y
+            
+            - name: Execute cowsay CMD
+              run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
+
+            - name: Upload Dragon text file # upload the dragon.txt so that test_job_2 can use it
+              uses: actions/upload-artifact@v4 # ref https://github.com/marketplace/actions/upload-a-build-artifact
+              with:
+                name: dragon-text-file
+                path: dragon.txt # where the file is location on the runner
+    
+    test_job_2:
+        needs: build_job_1 # creating the job dependncy, this job should run only after job1
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Dragon text file
+              uses: actions/download-artifact@v5 #https://github.com/actions/download-artifact
+              with:
+                name: dragon-text-file # same name (not the original file name) as defined in upload-artifact action
+        
+            - name: Test File Exists
+              run: grep -i "dragon" dragon.txt
+    
+    deploy_job_3:
+        needs: [test_job_2]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download Dragon text file
+              uses: actions/download-artifact@v5 #https://github.com/actions/download-artifact
+              with:
+                name: dragon-text-file # same name (not the original file name) as defined in upload-artifact action
+            
+            - name: Read File
+              run: cat dragon.txt
+            
+            - name: Deploy
+              run: echo Deploying...
+
