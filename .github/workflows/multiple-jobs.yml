@@ -26,7 +26,8 @@ jobs:
             - name: Download Dragon text file
               uses: actions/download-artifact@v5 #https://github.com/actions/download-artifact
               with:
-                name: dragon-text-file # same name (not the original file name) as defined in upload-artifact action
+                name: dragon-text-file-run-${{ github.run_number }} # same name (not the original file name) as defined in upload-artifact action
+                # the file dragon.txt will be uploaded to blob storage in a zip file with name "dragon-text-file-run-${{ github.run_number }} .zip"
         
             - name: Test File Exists
               run: grep -i "dragon" dragon.txt
@@ -38,7 +39,7 @@ jobs:
             - name: Download Dragon text file
               uses: actions/download-artifact@v5 #https://github.com/actions/download-artifact
               with:
-                name: dragon-text-file # same name (not the original file name) as defined in upload-artifact action
+                name: dragon-text-file-run-${{ github.run_number }}  # same name (not the original file name) as defined in upload-artifact action
             
             - name: Read File
               run: cat dragon.txt
