@@ -54,13 +54,13 @@ jobs:
               run: |
                 echo $GITHUB_RUN_ID
                 echo "run id is ${{github.run_id}}"
-            - name: Print run attempt
+            - name: Print run ATTEMPT
               run: |
                 echo $GITHUB_RUN_ATTEMPT
                 echo "run attempt is ${{github.run_attempt}}"
-            - name: Print run ID
+            - name: Print run NUMBER
               run: |
-                echo $GITHUB_RUN_ID
+                echo $GITHUB_RUN_NUMBER
                 echo "run number is ${{github.run_number}}"
                 
 
