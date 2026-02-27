@@ -46,4 +46,21 @@ jobs:
             
             - name: Deploy
               run: echo Deploying...
+    
+    print_build_in_run_variables:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Print run ID
+              run: |
+                echo $GITHUB_RUN_ID
+                echo "run id is ${{github.run_id}}"
+            - name: Print run attempt
+              run: |
+                echo $GITHUB_RUN_ATTEMPT
+                echo "run attempt is ${{github.run_attempt}}"
+            - name: Print run ID
+              run: |
+                echo $GITHUB_RUN_ID
+                echo "run number is ${{github.run_number}}"
+                
 
