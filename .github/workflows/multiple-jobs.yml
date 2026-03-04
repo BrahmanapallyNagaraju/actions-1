@@ -12,7 +12,7 @@ jobs:
             
             - name: Execute cowsay CMD
               run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
-
+            # artifact sharing between jobs
             - name: Upload Dragon text file # upload the dragon.txt so that test_job_2 can use it
               uses: actions/upload-artifact@v4 # ref https://github.com/marketplace/actions/upload-a-build-artifact
               with:
@@ -33,7 +33,7 @@ jobs:
               run: grep -i "dragon" dragon.txt
     
     deploy_job_3:
-        needs: [test_job_2]
+        needs: [test_job_2] # depends on test_job_2, can add multiple jobs dependency
         runs-on: ubuntu-latest
         steps:
             - name: Download Dragon text file
@@ -47,7 +47,7 @@ jobs:
             - name: Deploy
               run: echo Deploying...
     
-    print_build_in_run_variables:
+    print_built_in_run_variables:
         runs-on: ubuntu-latest
         steps:
             - name: Print run ID
