@@ -4,7 +4,8 @@ on: push
 
 jobs:
     first-job:
-        runs-on: [ubuntu-latest, windows-latest]
+        # runs-on: [ubuntu-latest, windows-latest] #list of labels in the runs-on field, GitHub interprets this as a logical AND operation 
+        runs-on: ubuntu-latest
         steps:
             - name: hello
               run: echo hello world
