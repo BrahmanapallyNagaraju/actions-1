@@ -20,19 +20,20 @@ jobs:
             - name: Dump steps context
               env:
                 STEPS_CONTEXT: ${{ toJson(steps) }}
-              run: echo $STEPS_CONTEXT
+              run: echo "$STEPS_CONTEXT"
 
             - name: Dump runner context
               env:
                 RUNNER_CONTEXT: ${{ toJson(runner) }}
-              run: echo $RUNNER_CONTEXT
+              run: echo "$RUNNER_CONTEXT"
 
             - name: Dump secrets context
               env:
                 SECRETS_CONTEXT: ${{ toJson(secrets) }}
-              run: echo $SECRETS_CONTEXT
+              run: echo "$SECRETS_CONTEXT"
 
             - name: Dump strategy context
               env:
-                STRATEGY_CONTEXT: ${{ toJson(strategy) }}
-              run: echo $STRATEGY_CONTEXT # this won't execute since strategy was not used in this workflow
+                STRATEGY_CONTEXT: ${{ toJson(strategy) }} # gives default values
+                # { "fail-fast": true, "job-index": 0, "job-total": 1, "max-parallel": 1 }
+              run: echo "$STRATEGY_CONTEXT"
