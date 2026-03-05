@@ -18,13 +18,21 @@ jobs:
               run: echo "$JOB_CONTEXT"
 
             - name: Dump steps context
-              run: echo ${{ toJson(steps) }}
+              env:
+                STEPS_CONTEXT: ${{ toJson(steps) }}
+              run: echo $STEPS_CONTEXT
 
             - name: Dump runner context
-              run: echo ${{ toJson(runner) }}
+              env:
+                RUNNER_CONTEXT: ${{ toJson(runner) }}
+              run: echo $RUNNER_CONTEXT
 
             - name: Dump secrets context
-              run: echo ${{ toJson(secrets) }}
+              env:
+                SECRETS_CONTEXT: ${{ toJson(secrets) }}
+              run: echo $SECRETS_CONTEXT
 
             - name: Dump strategy context
-              run: echo ${{ toJson(strategy) }} # this won't execute since strategy was not used in this workflow
+              env:
+                STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+              run: echo $STRATEGY_CONTEXT # this won't execute since strategy was not used in this workflow
